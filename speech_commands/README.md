@@ -1,7 +1,5 @@
 # README file for KWS Speech Commands Example
 
-This is a speech commands recognition example for keyword spotting. For more information on tensorflow's speech command recognition framework, see the tutorial at https://www.tensorflow.org/tutorials/sequences/audio_recognition.
-
 Please follow the instructions below to train and evaluate my keyword spotting model against the basline model with the given parameter settings and keyword set. Parameter congifurations and keyword set can be changed if desired.
 
 The results I obtained from my trained 'cnn' model against the baseline 'conv' model are contained 
