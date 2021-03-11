@@ -5,7 +5,7 @@ Please follow the instructions below to train and evaluate my keyword spotting m
 The results I obtained from my trained 'cnn' model against the baseline 'conv' model are contained 
 in the 'model_results' file in this directory.
 
-Training results:
+**Training results:**
 
 The training parameters used to train the models can be found in the 'train.py' script 
 of the speech commands folder. The models are trained to classify 8 keywords.
@@ -34,7 +34,7 @@ III) Change the model architecture parameter in the notebook to 'conv'. Then tra
 - To train a quantized model (for eight bit deployment), change the 'quantize' flag in the train.py script to 'True'
 
 
-Freezing trained model:
+**Freezing trained model:**
 
 In order to obtain a frozen representation of a model using the trained checkpoint from the previous step, do as follows.
 
@@ -49,7 +49,7 @@ python speech_commands/freeze.py --model_architecture='rnn' --start_checkpoint='
 3) To obtain the frozen graph of the baseline model, run the corresponding cell of the Google Colab notebook provided previously.
 
 
-Test streaming accuracy:
+**Test streaming accuracy:**
 
 To test streaming performance of model on a synthetic audio file by using the frozen model from the previous step,
 generate the audio file and its corresponding ground truth label file, run the following:
