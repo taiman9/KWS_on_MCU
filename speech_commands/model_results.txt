@@ -1,6 +1,6 @@
 ﻿This file contains the results I obtained from my trained 'cnn' model and the baseline 'conv' model.
 
-conv_model:
+baeline model:
 
 Confusion matrix:
 
@@ -16,10 +16,10 @@ Confusion matrix:
  [  2  10   5  67   8  11   4   4   1 290]]
 
 
-Final test accuracy = 87.2% (Number of test samples=3932)
+Final test accuracy = 90.4% (Number of test samples=3932)
 
 
-cnn model:
+My cnn model:
 
 Number of params:
 _________________________________________________________________
@@ -61,23 +61,11 @@ Confusion matrix:
  [  1  16   1   0   0   3  14 359   2   0]
  [  3  19   2   2   6   5   0   1 355   3]
  [  1   6   0   6  19   6   0   1   5 367]]
-W1212 19:03:41.479378 140311078741888 train.py:320] Confusion Matrix:
- [[321   2   1   0   1   0   0   0   0   2]
- [  0 211   9  29  12   8  16  23  14   5]
- [  2  10 384   8   0   3   8   2   1   1]
- [  0  10   3 361   3  16   5   2   3   2]
- [  1  15   0   5 369   5   4   2   8  16]
- [  1  16   5  42   4 330   4   1   2   1]
- [  2   8  21   3  10   3 359   6   0   0]
- [  1  16   1   0   0   3  14 359   2   0]
- [  3  19   2   2   6   5   0   1 355   3]
- [  1   6   0   6  19   6   0   1   5 367]]
 
-Final test accuracy = 87.1% (N=3924)
+Final test accuracy = 88.2% (N=3924)
 
 Float model size = 1456996 bytes
 Quantized model size = 370776 bytes
-
 
 Synthetic streaming accuracy:
 67.0% matched, 63.0% correct, 4.0% wrong, 0.0% false positive
