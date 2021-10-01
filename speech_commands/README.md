@@ -12,14 +12,14 @@ of the speech commands folder. The models are trained to classify 8 keywords.
 
 1) To train my convolutional model 'cnn' and obtain number of parameters and test results,
  run the following in terminal:
-
+```
 python speech_commands/train.py --model_architecture='cnn'
-
+```
 2) To train my recurrent model 'rnn' and obtain number of parameters and test results,
  run the following in terminal:
- 
+```
 python speech_commands/train.py --model_architecture='rnn'
-
+```
 3) To train and obtain results of the baseline model, please do the following as it uses deprecated 
 tensorflow libraries which does not run on my machine:
 
