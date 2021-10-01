@@ -3,7 +3,7 @@
 Please follow the instructions below to train and evaluate my keyword spotting model against the basline model with the given parameter settings and keyword set. Parameter congifurations and keyword set can be changed if desired.
 
 The results I obtained from my trained ``cnn`` model against the baseline ``conv`` model are contained 
-in the ``model_results`` file in this directory.
+in the ``model_results`` text file in this directory.
 
 **Training results:**
 
