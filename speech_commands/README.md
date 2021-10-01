@@ -24,7 +24,7 @@ python speech_commands/train.py --model_architecture='rnn'
 tensorflow libraries which does not run on my machine:
 
 I) Open the Google Colab notebook at: 
-[Tensorflow keyword recognition](https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/micro/examples/micro_speech/train/train_micro_speech_model.ipynb?fbclid=IwAR02kZv7RoO36_OM7vqUQoTemdecxMBzAi8-wBBoI1MIxzgJcWPkrIcqAIg#scrollTo=ludfxbNIaegy) 
+[Tensorflow keyword recognition](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/audio/simple_audio.ipynb#scrollTo=_4CK75DHz_OR) 
 
 II) Change the training parameters in the notebook to match those of the ``train.py`` script in this project
 
