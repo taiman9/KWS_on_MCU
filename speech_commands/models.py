@@ -187,9 +187,9 @@ def create_rnn_model(fingerprint_input, model_settings, is_training):
   
   chunk_size = model_settings['fingerprint_width']
   n_chunks = model_settings['spectrogram_length']
-  rnn_size1 = 128
+  rnn_size1 = 120
   
-  reg = l2(0.0005)
+  reg = l2(0.005)
   
   fingerprint_3d = tf.reshape(fingerprint_input,
                               [-1, n_chunks, chunk_size])
@@ -243,105 +243,12 @@ def create_cnn_model(fingerprint_input, model_settings, is_training):
           v
       [Output layer]
           v
-  This produces fairly good quality results, but can involve a large number of
-  weight parameters and computations. For a cheaper alternative from the same
-  paper with slightly less accuracy, see 'low_latency_conv' below.
-  During training, dropout nodes are introduced after each relu, controlled by a
-  placeholder.
-  Args:
-    fingerprint_input: TensorFlow node that will output audio feature vectors.
-    model_settings: Dictionary of information about the model.
-    is_training: Whether the model is going to be used for training.
-  Returns:
-    TensorFlow node outputting logits results, and optionally a dropout
-    placeholder.
-  """
-  
-  '''
-  if is_training:
-    dropout_rate = tf.compat.v1.placeholder(tf.float32, name='dropout_rate')
-  input_frequency_size = model_settings['fingerprint_width']
-  input_time_size = model_settings['spectrogram_length']
-  fingerprint_4d = tf.reshape(fingerprint_input,
-                              [-1, input_time_size, input_frequency_size, 1])
-  first_filter_width = 4
-  first_filter_height = 10
-  first_filter_count = 48
-  first_weights = tf.compat.v1.get_variable(
-      name='first_weights',
-      initializer=tf.compat.v1.truncated_normal_initializer(stddev=0.01),
-      shape=[first_filter_height, first_filter_width, 1, first_filter_count])
-  first_bias = tf.compat.v1.get_variable(
-      name='first_bias',
-      initializer=tf.compat.v1.zeros_initializer,
-      shape=[first_filter_count])
-
-  first_conv = tf.nn.conv2d(input=fingerprint_4d,
-                            filters=first_weights,
-                            strides=[1, 1, 1, 1],
-                            padding='SAME') + first_bias
-  first_relu = tf.nn.relu(first_conv)
-  if is_training:
-    first_dropout = tf.nn.dropout(first_relu, rate=dropout_rate)
-  else:
-    first_dropout = first_relu
- 
-  second_filter_width = 4
-  second_filter_height = 10
-  second_filter_count = 32
-  second_weights = tf.compat.v1.get_variable(
-      name='second_weights',
-      initializer=tf.compat.v1.truncated_normal_initializer(stddev=0.01),
-      shape=[
-          second_filter_height, second_filter_width, first_filter_count,
-          second_filter_count
-      ])
-  second_bias = tf.compat.v1.get_variable(
-      name='second_bias',
-      initializer=tf.compat.v1.zeros_initializer,
-      shape=[second_filter_count])
-  second_conv = tf.nn.conv2d(input=first_dropout,
-                             filters=second_weights,
-                             strides=[1, 2, 1, 1],
-                             padding='SAME') + second_bias
-  second_relu = tf.nn.relu(second_conv)
-  if is_training:
-    second_dropout = tf.nn.dropout(second_relu, rate=dropout_rate)
-  else:
-    second_dropout = second_relu
-
-  max_pool = tf.nn.max_pool2d(input=second_dropout,
-                              ksize=[1, 2, 2, 1],
-                              strides=[1, 1, 1, 1],
-                              padding='SAME')
-
-  second_conv_shape = max_pool.get_shape()
-  second_conv_output_width = second_conv_shape[2]
-  second_conv_output_height = second_conv_shape[1]
-  second_conv_element_count = int(
-      second_conv_output_width * second_conv_output_height *
-      second_filter_count)
-  flattened_second_conv = tf.reshape(max_pool,
-                                     [-1, second_conv_element_count])
-  label_count = model_settings['label_count']
-  final_fc_weights = tf.compat.v1.get_variable(
-      name='final_fc_weights',
-      initializer=tf.compat.v1.truncated_normal_initializer(stddev=0.01),
-      shape=[second_conv_element_count, label_count])
-  final_fc_bias = tf.compat.v1.get_variable(
-      name='final_fc_bias',
-      initializer=tf.compat.v1.zeros_initializer,
-      shape=[label_count])
-  final_fc = tf.matmul(flattened_second_conv, final_fc_weights) + final_fc_bias
-  if is_training:
-    return final_fc, dropout_rate
-  else:
-    return final_fc
-
-  '''
-  if is_training:
-    dropout_rate = tf.compat.v1.placeholder(tf.float32, name='dropout_rate')    
-
+      [Linear layer] 
+          v
+      [Dense layer]
+          v
+      [Output layer]
+      
   label_count = model_settings['label_count']
   input_frequency_size = model_settings['fingerprint_width']
   input_time_size = model_settings['spectrogram_length']
@@ -352,20 +259,18 @@ def create_cnn_model(fingerprint_input, model_settings, is_training):
   
 
   model = keras.Sequential()
-   #add model layers
-  model.add(layers.Conv2D(64, kernel_size=(10,4), strides=(1, 1), activation='relu', input_shape=input_shape))
-  model.add(layers.BatchNormalization(momentum=0.8))
-  if is_training:  
-    model.add(layers.Dropout(0.1))      
-    #model.add(MaxPooling2D(pool_size=(2, 2),strides=(1, 1), padding='valid'))
-  model.add(layers.Conv2D(48, kernel_size=(10,4), strides=(2, 1), activation='relu', input_shape=input_shape))
+  #add model layers
+  model.add(layers.Conv2D(60, kernel_size=(10,4), strides=(1, 1), activation='relu', input_shape=input_shape))   
   model.add(layers.BatchNormalization(momentum=0.8))
   if is_training:
-    model.add(layers.Dropout(0.1))
+    model.add(layers.Dropout(0.25))
+  model.add(layers.Conv2D(40, kernel_size=(10,4), strides=(2, 1), activation='relu')
   model.add(layers.MaxPooling2D(pool_size=(2, 2),strides=(1, 1), padding='valid'))
   model.add(layers.Flatten())
+  model.add(layers.Dense(25))
+  model.add(layers.Dense(75, activation='relu'))
   if is_training:
-    model.add(layers.Dropout(0.1))
+    model.add(layers.Dropout(0.3))
   model.add(layers.Dense(label_count))
       
 
