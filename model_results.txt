@@ -13,6 +13,6 @@ Non-trainable params: 224
 Float model size = 1456996 bytes
 Quantized model size = 370776 bytes
 
-Average test accuracy (quantized) = 87.7% (N=3932)
+Average test accuracy (quantized) = 87.8% (N=3932)
 
 
