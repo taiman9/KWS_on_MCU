@@ -6,7 +6,7 @@ The average test accuracies I obtained for my trained ``cnn`` model and the base
 
 **Training and test results:**
 
-As mentioned, the training parameters and keywords used to train the models can be found in the `train.py` script. The models are trained to classify 8 keywords. This directory (`speech_commands`) needs to be downloaded and entered through a Linux terminal before proceeding with the following: 
+As mentioned, the training parameters and keywords used to train the models are configured in the `train.py` script. The models are trained to classify 8 keywords. This directory (`speech_commands`) needs to be downloaded and entered through a Linux CLI before proceeding as follows: 
 
 1) To train my CNN model, ``cnn``, and obtain number it's parameter count and test accuracy,
  run the following in terminal:
