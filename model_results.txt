@@ -1,0 +1,17 @@
+This file contains results obtained from testing my cnn model and the baseline cnn model across keyword sets of 8 words.
+
+baeline model:
+
+Average test accuracy = 91.3% (Number of test samples=3932)
+
+My cnn model:
+
+Total params: 463,610
+Trainable params: 463,386
+Non-trainable params: 224
+
+Average test accuracy = 88% (N=3932)
+
+Float model size = 1456996 bytes
+Quantized model size = 370776 bytes
+© 2021 GitHub, Inc.
