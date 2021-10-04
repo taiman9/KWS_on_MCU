@@ -1,0 +1,10 @@
+_silence_
+_unknown_
+yes
+no
+up
+down
+left
+right
+stop
+go
