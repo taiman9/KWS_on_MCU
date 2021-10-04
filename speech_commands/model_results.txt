@@ -1,72 +1,16 @@
-﻿This file contains the results I obtained from my trained 'cnn' model and the baseline 'conv' model.
+﻿This file contains results obtained from testing my cnn model and the baseline cnn model across keyword sets of 8 words.
 
 baeline model:
 
-Confusion matrix:
-
-[[325   0   0   0   2   0   0   1   0   0]
- [  1 195   9   9  27  12  17  23  16  19]
- [  1   8 391   4   1   3   8   1   2   0]
- [  1   2   6 342   2  19  14   0   1  18]
- [  2   6   0   0 400   7   0   1   6   3]
- [  1  10   3  32   6 345   3   0   1   5]
- [  1   3   8   2   3   0 387   6   2   0]
- [  2   6   0   0   5   1  10 371   0   1]
- [  0   2   0   0  23   2   1   0 382   1]
- [  2  10   5  67   8  11   4   4   1 290]]
-
-
-Final test accuracy = 90.4% (Number of test samples=3932)
-
+Average test accuracy = 91.3% (Number of test samples=3932)
 
 My cnn model:
 
-Number of params:
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-conv2d_1 (Conv2D)            (None, 40, 37, 64)        2624      
-_________________________________________________________________
-batch_normalization_1 (Batch (None, 40, 37, 64)        256       
-_________________________________________________________________
-dropout_1 (Dropout)          (None, 40, 37, 64)        0         
-_________________________________________________________________
-conv2d_2 (Conv2D)            (None, 16, 34, 48)        122928    
-_________________________________________________________________
-batch_normalization_2 (Batch (None, 16, 34, 48)        192       
-_________________________________________________________________
-dropout_2 (Dropout)          (None, 16, 34, 48)        0         
-_________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 15, 33, 48)        0         
-_________________________________________________________________
-flatten_1 (Flatten)          (None, 23760)             0         
-_________________________________________________________________
-dropout_3 (Dropout)          (None, 23760)             0         
-_________________________________________________________________
-dense_1 (Dense)              (None, 10)                237610    
-=================================================================
-Total params: 363,610
-Trainable params: 363,386
+Total params: 463,610
+Trainable params: 463,386
 Non-trainable params: 224
 
-Confusion matrix:
-
-[[321   2   1   0   1   0   0   0   0   2]
- [  0 211   9  29  12   8  16  23  14   5]
- [  2  10 384   8   0   3   8   2   1   1]
- [  0  10   3 361   3  16   5   2   3   2]
- [  1  15   0   5 369   5   4   2   8  16]
- [  1  16   5  42   4 330   4   1   2   1]
- [  2   8  21   3  10   3 359   6   0   0]
- [  1  16   1   0   0   3  14 359   2   0]
- [  3  19   2   2   6   5   0   1 355   3]
- [  1   6   0   6  19   6   0   1   5 367]]
-
-Final test accuracy = 88.2% (N=3924)
+Average test accuracy = 88% (N=3932)
 
 Float model size = 1456996 bytes
 Quantized model size = 370776 bytes
-
-Synthetic streaming accuracy:
-67.0% matched, 63.0% correct, 4.0% wrong, 0.0% false positive
-
