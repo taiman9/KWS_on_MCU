@@ -1,7 +1,7 @@
 This file contains results obtained from testing my CNN model and the baseline CNN model across keyword sets of 8 words.
 
 Baseline model :
-Average test accuracy (quantized) = 91.3% (Number of test samples=3932)
+Average test accuracy (not quantized) = 91.8% (Number of test samples=3932)
 
 My CNN model:
 
@@ -12,6 +12,6 @@ Non-trainable params: 224
 Float model size = 1456996 bytes
 Quantized model size = 370776 bytes
 
-Average test accuracy (quantized) = 88.7% (N=3932)
+Average test accuracy (quantized) = 88.3% (N=3932)
 
 
